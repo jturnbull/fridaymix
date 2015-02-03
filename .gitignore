@@ -1,0 +1,9 @@
+*.pyc
+*.sw[o|p]
+local_settings.py
+client_media
+venv
+bin
+lib
+src
+fridaymix.db

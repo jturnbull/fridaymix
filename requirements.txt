@@ -1,0 +1,9 @@
+# eggs
+Django==1.4.19
+python-memcached==1.53
+gunicorn==19.2
+MySQL-python==1.2.5
+South==1.0.2
+django-pagination==1.0.7
+Pillow==2.7.0
+lxml==3.4.1

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }}: Page not found{% endblock %}
+
+
+{% block pagetitle %}<h1>Page not found</h1>{% endblock %}
+
+{% block pagebody %}
+    <p>The page “<strong>{{ request_path }}</strong>” could not be found, it may have moved or been deleted.</p>
+{% endblock %}
+

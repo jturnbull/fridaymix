@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block pagetitle %}
+{{ block.super }}
+<h2><a href="{{ mix.playlist }}" onClick="javascript: pageTracker._trackPageview ('/mix/{{ mix.slug }}');">{{ mix }}</a></h2>
+{% endblock %}
+
+{% block pagebody %}
+
+<p>#fridaymix playlist from {{ mix.start|date:"jS M Y" }}. 
+
+
+{% with mix.tracks.count as counter %}
+{% if counter %}
+ {{ counter }} tracks, {{ mix.length_display }} running time
+{% endif %}
+ {% endwith %}
+ </p>
+ 
+<ol>
+    {% for track in tracks %}
+        <li><a href="{{ track.get_absolute_url }}" target="_blank">{{ track.artist }} - {{ track.name }}</a> (from {{ track.album }}) <span style="float: right">{{ track.length_display }}</span></li>
+    {% endfor %}    
+</ol>
+    {# <span style="clear: both; float: right; font-weight: bold;">{{ mix.length_display }}</span> #}
+
+        
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+
+{% block pagebody %}
+
+{{ block.super }}
+
+{% block video %}
+<div id="video">
+    <iframe src="http://player.vimeo.com/video/13847895" width="400" height="225" frameborder="0"></iframe>
+</div>
+{% endblock %}
+
+
+{% block mixes %}
+<div id="playlists">
+
+    <h2>The #fridaymix Playlists</h2>
+
+   <p><small><a href="{% url tracks %}">{{ track_count }} unique tracks</a> over {{ mixes.count }} collaborative mixes for a total running time of {{  total_length }}.</small></p>
+
+
+    <table class="playlists">
+<tbody>
+
+{% for mix in mixes %}
+
+    
+    <tr class="row">
+    <td rowspan="2" class="icon"><img src="{{ mix.icon.url }}" width="32" height="32" alt="{{ mix }}" class="icon"></td>
+        <td colspan="2">
+        {% if mix.upcoming %}
+            <em>{{ mix }}</em>
+         {% else %}
+             <a href="{{ mix.playlist }}" onClick="javascript: pageTracker._trackPageview ('/mix/{{ mix.slug }}');">{{ mix }}</a>
+         {% endif %}
+        
+
+         </td>
+    </tr>
+
+    <tr>
+
+
+    {% if mix.upcoming %}
+         <td colspan="2"><strong>Playlist available from {{ mix.start|date:"h:i a" }} on {{ mix.start|date:"jS M Y" }}</strong></td>
+         {% else %}
+        <td>
+    {% with mix.tracks.count as counter %}
+         {% if counter %}
+         <small><a href="{{ mix.get_absolute_url }}">{{ counter }} tracks</a>, {{ mix.length_display }} running time</small>
+         {% endif %}
+         {% endwith %}</td>
+
+        <td class="date"><small>{{ mix.start|date:"jS M Y" }}</small></td>
+        {% endif %}
+        </tr>
+{% endfor %}
+        </tbody></table></div>
+{% endblock %}
+
+{% block rules %}
+    
+
+<h2>The #fridaymix Rules</h2>
+
+<ul id="rules">
+<li>At 12:30pm on the 1st friday of each month you can download the latest empty <a href="http://www.spotify.com/" title="Spotify – A world of music. Instant, simple and free">Spotify</a> playlist from this site.</li>
+
+<li>You're invited to add amazing songs to this playlist that fit the theme, anywhere in the running order you think works.</li>
+
+<li>You can delete tracks you added, and reorder them as you like, but don't delete other people's songs.</li>
+
+<li>At precisely <strong>2:00pm</strong> (UK time) everyone starts the mix and listens it through in order (no skipping tracks!).</li>
+
+<li>Don't hog the stereo! The mix should be around 3:30 hours in length, so that it ends around hometime for most people.</li>
+
+</ul>
+
+<p>Discussion, arguments and accusations will all take place on <a href="http://twitter.com/#search?q=%23fridaymix">Twitter</a>, which you don't need a Twitter account to follow. </p>
+
+{% endblock %}
+
+{% block tweets %}
+    
+<div id="tweets">
+<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'search',
+  search: 'fridaymix',
+  interval: 6000,
+  title: 'The latest from',
+  subject: '#fridaymix',
+  width: 400,
+  height: 300,
+  theme: {
+    shell: {
+      background: '#e3ac3d',
+      color: '#ffffff'
+    },
+    tweets: {
+      background: '#ffffff',
+      color: '#444444',
+      links: '#a60c0c'
+    }
+  },
+  features: {
+    scrollbar: true,
+    loop: false,
+    live: true,
+    hashtags: true,
+    timestamp: true,
+    avatars: true,
+    toptweets: true,
+    behavior: 'all'
+  }
+}).render().start();
+</script></div>
+
+{% endblock %}
+
+{% endblock %}

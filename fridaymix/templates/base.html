@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" id="default">
+	<head>  
+		<meta charset="utf-8">
+	<title>{% block title %}#fridaymix{% endblock %}</title>
+	<meta name="author" content="James Turnbull">
+    <link rel="stylesheet" href="{{MEDIA_URL}}styles/reset.css" type="text/css" media="screen"  />
+	<link rel="stylesheet" href="{{MEDIA_URL}}styles/main.css" type="text/css" media="screen"  />
+{% block extrahead %}
+    
+{% endblock %}
+
+</head>
+<body>
+    
+<div id="page">
+<p class="twitter"><a href="http://www.twitter.com/fridaymix"><img src="http://twitter-badges.s3.amazonaws.com/follow_us-c.png" alt="Follow fridaymix on Twitter"/></a></p>
+{% block pagetitle %}
+<h1><a href="/">#FRIDAYMIX</a></h1>
+{% endblock %}
+{% block intro %}
+    <p class="intro">The #fridaymix is a collaborative project to create a totally awesome themed mix for your Friday afternoon. The music will be provided by you, via <a href="https://www.spotify.com/en/get-started/">Spotify</a>, and a related discussion will take place on <a href="http://twitter.com/#search?q=%23fridaymix">Twitter</a>. You can also follow <a href="http://twitter.com/fridaymix" title="">@fridaymix</a> for updates.</p>
+{% endblock %}
+
+{% block pagebody %}
+{% endblock %}
+
+{% block footer %}
+<p><small>#fridaymix is a <a href="http://rotacoo.com">Rotacoo</a> production. Pumpkin icon by <a href="http://www.iconarchive.com/show/halloween-avatars-icons-by-deleket/Pumpkin-icon.html">Deleket</a> is CC licensed. Scotland flag by <a href="http://www.senojflags.com/">Senojflags</a>. Geek icon by <a href="http://www.olawolska.com/">Aleksandra Wolska</a> is CC licensed.</small></p>
+<div style="clear:both;"><!-- --></div>
+{% endblock %}
+
+</div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-88258-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+  })();
+
+</script>
+</body>
+</html>

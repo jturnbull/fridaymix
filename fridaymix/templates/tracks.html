@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<script charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+<script src="{{ MEDIA_URL }}script/jquery.dataTables.min.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="{{ MEDIA_URL }}styles/demo_table.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        	$('#tracks').dataTable( {
+		"bPaginate": false,
+		"bLengthChange": false,
+		"bFilter": false,
+		"bSort": true,
+		"bInfo": false,
+		"bAutoWidth": false } );
+
+    });
+    
+</script>
+
+{% endblock %}
+
+{% block pagetitle %}
+{{ block.super }}
+<h2>Tracks</h2>
+{% endblock %}
+
+{% block pagebody %}
+
+<p>
+{% with tracks.count as counter %}
+{% if counter %}
+ {{ counter }} tracks
+{% endif %}
+ {% endwith %}
+ </p>
+ 
+<table id="tracks">
+    <thead><tr><th>Track</th><th>Artist</th><th>Album</th><th>Length</th><th>Mix count</th></tr></thead>
+    <tbody>
+    {% for track in tracks %}
+    {% if track.name %}
+        <tr><td><a href="{{ track.get_absolute_url }}" target="_blank">{{ track.name }}</a></td><td>{{ track.artist }}</td><td>{{ track.album }}</td><td>{{ track.length_display }}</td><td>{{ track.mix_set.count }}</td></tr>
+    {% endif %}
+    {% endfor %}  
+    </tbody>  
+</table>
+    {# <span style="clear: both; float: right; font-weight: bold;">{{ mix.length_display }}</span> #}
+
+        
+{% endblock %}
